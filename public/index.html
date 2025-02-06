@@ -1,0 +1,50 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node.js and HTML</title>
+  <script src="https://cunning-bear-jri13j-dev-ed.trailblaze.my.salesforce.com/lightning/lightning.out.js"></script>
+  <script>
+     // This is the script that embeds your LWC component
+      $Lightning.use("c:lightningOutApp", function() {
+        $Lightning.createComponent(
+            "c:myLwcComponent",  // LWC component name from Salesforce
+            {},                  // Any attributes for the component
+            "lightning-container", // DOM element ID to render the component
+            function(cmp) {
+                console.log("Component loaded successfully");
+            }
+        );
+      });
+  </script>
+</head>
+<body>
+  <h1>Node.js and HTML Frontend</h1>
+  <button id="fetchDataBtn">Get Data from Node.js</button>
+  <div id="data"></div>
+
+  <script>
+    // Get the button and data div
+    const button = document.getElementById('fetchDataBtn');
+    const dataDiv = document.getElementById('data');
+
+    // Add event listener to the button
+    button.addEventListener('click', () => {
+      // Make a request to the backend API
+      fetch('/api/data')
+        .then(response => response.json())
+        .then(data => {
+          // Display the response data
+          dataDiv.textContent = data.payload?.Message__c;
+          console.log('Payload', data.payload);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          dataDiv.textContent = 'Failed to fetch data';
+        });
+    });
+  </script>
+</body>
+</html>

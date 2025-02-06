@@ -1,0 +1,11 @@
+{
+    "myDomain": "https://cunning-bear-jri13j-dev-ed.trailblaze.my.salesforce.com",
+    "apiVersion": "54.0",
+    "consumerKey": "XXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "salesforceUsername": "test@test.com",
+    "salesforceAuthServer": "https://login.salesforce.com",
+    "platformEvent": {
+      "apiName": "External_Message__e",
+      "topicChannel": "/event/External_Message__e"
+    }
+  }
