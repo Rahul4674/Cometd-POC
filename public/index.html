@@ -5,31 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Node.js and HTML</title>
-  <script src="https://cunning-bear-jri13j-dev-ed.trailblaze.lightning.force.com/lightning/lightning.out.js"></script>
-  <script>
-
-      $Lightning.use(
-        'c:lightningOutApp', // name of the Lightning Out app
-        function () { // callback after the framework and app load
-            $Lightning.createComponent(
-                'c:myLwcComponent', // top-level component of the Lightning Out app
-                {}, // attributes to set on the component
-                'lightning-out', // DOM element ID where the component is inserted
-                function (cmp) { // callback after the component loads
-                    console.log('The component was created.');
-                }
-            );
-        },
-        'https://cunning-bear-jri13j-dev-ed.trailblaze.my.site.com/cometdAura' // Experience Cloud site endpoint
-    );
-  </script>
 </head>
 <body>
   <h1>Node.js and HTML Frontend</h1>
   <button id="fetchDataBtn">Get Data from Node.js</button>
-  <div id="data"></div>
-
+  <div id="lightningOut"></div>
+  <script src="https://cunning-bear-jri13j-dev-ed.trailblaze.lightning.force.com/lightning/lightning.out.js"></script>
   <script>
+    $Lightning.use(
+      'c:lightningOutApp', // name of the Lightning Out app
+      function () { // callback after the framework and app load
+          $Lightning.createComponent(
+              'c:myLwcComponent', // top-level component of the Lightning Out app
+              {}, // attributes to set on the component
+              'lightningOut', // DOM element ID where the component is inserted
+              function (cmp) { // callback after the component loads
+                  console.log('The component was created.');
+              }
+          );
+      },
+      'https://cunning-bear-jri13j-dev-ed.trailblaze.my.site.com/cometdAura' // Experience Cloud site endpoint
+    );  
     // Get the button and data div
     const button = document.getElementById('fetchDataBtn');
     const dataDiv = document.getElementById('data');
