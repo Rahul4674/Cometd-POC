@@ -9,6 +9,7 @@ const config = require('./config.json');
 
 const express = require('express');
 const path = require('path');
+const { connect } = require('http2');
 
 const app = express();
 const port = 3000;
@@ -17,8 +18,8 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Example API route to send a response to the frontend
-app.get('/api/data', (req, res) => {
-    main(res);
+app.get('/api/data', async (req, res) => {
+    await main(res);
     //res.json({ message: 'Hello from Node.js server!' });
 });
 
@@ -29,7 +30,7 @@ app.listen(port, () => {
 
 
 async function main(res) {
-  const authToken = '00D5i00000EV8cR!ARoAQMTdoa_lidqzGrSRaZzYfCwyn2k3TXIDp48QXCMRrLirqKLAGxzrJP9BFypIAjlb_K.q10ItTf8nHqW98ZnpJezLhSdz';//await authLib.authenticate(config);
+  const authToken = '00D5i00000EV8cR!ARoAQC_KO_EMqSPQsrDoWSYm36tcTgCLJ_DNjuKXUgau0iNetjxSxWmkS3z5T1_NdEgQzoPgrnph30OqhDrw2H8N2EKcSJFl';//await authLib.authenticate(config);
   cometd.configure({
     url: `${config.myDomain}/cometd/62.0/`,
     requestHeaders: {
@@ -48,6 +49,8 @@ async function main(res) {
         console.log(dataFromServer?.payload);
         res.json({ payload : dataFromServer?.payload }); 
       });
+    } else{
+       console.log('Handsaking', h);
     }
   });
 }

@@ -5,19 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Node.js and HTML</title>
-  <script src="https://cunning-bear-jri13j-dev-ed.trailblaze.my.salesforce.com/lightning/lightning.out.js"></script>
+  <script src="https://cunning-bear-jri13j-dev-ed.trailblaze.my.site.com/cometdPoc/lightning/lightning.out.js"></script>
   <script>
-     // This is the script that embeds your LWC component
-      $Lightning.use("c:lightningOutApp", function() {
-        $Lightning.createComponent(
-            "c:myLwcComponent",  // LWC component name from Salesforce
-            {},                  // Any attributes for the component
-            "lightning-container", // DOM element ID to render the component
-            function(cmp) {
-                console.log("Component loaded successfully");
-            }
-        );
-      });
+
+      $Lightning.use(
+        'c:lightningOutApp', // name of the Lightning Out app
+        function () { // callback after the framework and app load
+            $Lightning.createComponent(
+                'c:myLwcComponent', // top-level component of the Lightning Out app
+                {}, // attributes to set on the component
+                'lightning-out', // DOM element ID where the component is inserted
+                function (cmp) { // callback after the component loads
+                    console.log('The component was created.');
+                }
+            );
+        },
+        'https://cunning-bear-jri13j-dev-ed.trailblaze.my.site.com/cometdPoc' // Experience Cloud site endpoint
+    );
   </script>
 </head>
 <body>
